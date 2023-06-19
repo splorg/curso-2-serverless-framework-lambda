@@ -35,10 +35,11 @@ functions:
   cadastrarAlunos:
     handler: cadastro_batch/aws/index.cadastrarAlunos
     events:
-      - s3: alunos-csv
-        event: s3:ObjectCreated:*
-        rules:
-          - suffix: .csv
+      - s3:
+          bucket: alunos-csv
+          event: s3:ObjectCreated:*
+          rules:
+            - suffix: .csv
 
   simulandoUploadDoCsv:
     handler: cadastro_batch/local/index.simulandoUploadDoCsv
@@ -51,10 +52,11 @@ functions:
   cadastrarAlunosDoBucketLocal:
     handler: cadastro_batch/local/index.cadastrarAlunosDoBucketLocal
     events:
-      - s3: alunos-csv-local
-        event: s3:ObjectCreated:*
-        rules:
-          - suffix: .csv
+      - s3:
+          bucket: alunos-csv-local
+          event: s3:ObjectCreated:*
+          rules:
+            - suffix: .csv
     enabled: false
 
 plugins:
